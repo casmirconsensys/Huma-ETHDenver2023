@@ -1,8 +1,9 @@
-import { setupSDK } from "../components/setUpSDK";
+import { setupSDK } from "../../sr/utils";
 import { NftService } from "@liquality/wallet-sdk";
 import React, { useState } from "react";
 
 export default function Collectibles() {
+    // In order to use getNFTs() we need to have called the sdk.setup
   setupSDK();
   const [nfts, setNfts] = useState([]);
   const fetchNfts = async (address, chainId) => {

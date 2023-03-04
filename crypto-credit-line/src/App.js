@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Mint from './components/Mint';
 
