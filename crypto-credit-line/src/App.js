@@ -1,5 +1,5 @@
 import './App.css';
-import Mint from './components/Mint';
+import Mint from './components/Mint.tsx';
 
 function App() {
   return (

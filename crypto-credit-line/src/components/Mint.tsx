@@ -4,7 +4,12 @@ import { TransactionService } from '@liquality/wallet-sdk'
 import { MintERC721Request } from '@liquality/wallet-sdk/dist/src/nft/types'
 import {getPrivateKey} from "../utils";
 
-function Mint(props) {
+type Props = {
+    onSubmit: (request: MintERC721Request, chainId: number, pk: string) => void;
+    transactionHash: string;
+  };
+
+const Mint: React.FC<Props> = (props) => {
     const {onSubmit, transactionHash} = props
 
     const [chainId, setChainId] = useState("")
@@ -15,7 +20,7 @@ function Mint(props) {
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log({contractAddress, recipient, uri})
-        // onSubmit({contractAddress, recipient, uri}, +chainId, getPrivateKey())
+        onSubmit({contractAddress, recipient, uri}, +chainId, getPrivateKey())
     }
 
     const checkStatus = async () => {
