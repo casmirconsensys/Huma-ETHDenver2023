@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <Mint />
     </div>
-    //TODO: Implement
+    //TODO: Implement create wallet for auth
   );
 }
 
