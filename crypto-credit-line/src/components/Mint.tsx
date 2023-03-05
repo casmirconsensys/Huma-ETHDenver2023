@@ -39,7 +39,7 @@ const Mint: React.FC<Props> = (props) => {
             target="_blank"
             rel="noreferrer"
             >
-                <h5 className='mint_h5'> Mint ERC721 NFT</h5>
+                <h5 className='mint_h5'> Mint Credit Union NFT</h5>
             </a>
             <p className='mint_p'>You can mint ERC721 NFT. Just fill the form and the transaction hash will be displayed</p>
 
