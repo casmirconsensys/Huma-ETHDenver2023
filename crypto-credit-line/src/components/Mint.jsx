@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import './Mint.css'
 import { TransactionService } from '@liquality/wallet-sdk'
 import { MintERC721Request } from '@liquality/wallet-sdk/dist/src/nft/types'
 import {getPrivateKey} from "../utils";
@@ -27,40 +28,40 @@ function Mint(props) {
       }
 
   return (
-    <div>
-        <div>
+    <div className='mint_container'>
+        <div className='mint_div'>
             <a href="https://docs.liquality.io/functions/auth#create-a-wallet"
             target="_blank"
             rel="noreferrer"
             >
-                <h5> Mint ERC721 NFT</h5>
+                <h5 className='mint_h5'> Mint ERC721 NFT</h5>
             </a>
-            <p>You can mint ERC721 NFT. Just fill the form and the transaction hash will be displayed</p>
+            <p className='mint_p'>You can mint ERC721 NFT. Just fill the form and the transaction hash will be displayed</p>
 
-            <form onSubmit={handleSubmit} action="#">
+            <form className='mint_form' onSubmit={handleSubmit} action="#">
                 <div>
-                    <label htmlFor=""> Your ChainID</label>
-                    <input value={chainId} onChange={(e) => setChainId(e.target.value)} id="ChainID" type="number" placeholder='Type chainID here...' required />
+                    <label className='mint_form_label' htmlFor=""> Your ChainID</label>
+                    <input className='mint_form_input' value={chainId} onChange={(e) => setChainId(e.target.value)} id="ChainID" type="number" placeholder='Type chainID here...' required />
                 </div>
                 <div>
-                    <label htmlFor="">Token Address</label>
-                    <input value={contractAddress} onChange={(e) => setContractAddress(e.target.value)} id="address" type="text" placeholder='Paste token address' required/>
+                    <label className='mint_form_label' htmlFor="">Token Address</label>
+                    <input className='mint_form_input' value={contractAddress} onChange={(e) => setContractAddress(e.target.value)} id="address" type="text" placeholder='Paste token address' required/>
                 </div>
                 <div>
-                    <label htmlFor="">Recipient Address</label>
-                    <input value={recipient} onChange={(e) => setRecipient(e.target.value)} id="address" type="text" placeholder='Paste recipient wallet address...' required/>
+                    <label className='mint_form_label' htmlFor="">Recipient Address</label>
+                    <input className='mint_form_input' value={recipient} onChange={(e) => setRecipient(e.target.value)} id="address" type="text" placeholder='Paste recipient wallet address...' required/>
                 </div>
                 <div>
-                    <label htmlFor="">URI</label>
-                    <input value={uri} onChange={(e) => setUri(e.target.value)} id="address" type="text" placeholder='Pase token uri' required/>
+                    <label className='mint_form_label' htmlFor="">URI</label>
+                    <input className='mint_form_input' value={uri} onChange={(e) => setUri(e.target.value)} id="address" type="text" placeholder='Pase token uri' required/>
                 </div>
 
-                <button type='submit'>Mint NFT</button>
+                <button className='mint_btn' type='submit'>Mint NFT</button>
 
-                <div>
-                    <div>
-                        <label htmlFor="">{/* !TransactionHash && 'Transaction Hash will be displayed here' */}</label>
-                        <button onClick={checkStatus} type="button">Check Status</button>
+                <div className='mint_check_container'>
+                    <div className='mint_check_div'>
+                        <label className='mint_check_label' htmlFor="">{ !transactionHash && 'Transaction Hash will be displayed here' } { transactionHash }</label>
+                        <button className='mint_btn' onClick={checkStatus} type="button">Check Status</button>
                     </div>
                 </div>
                 
