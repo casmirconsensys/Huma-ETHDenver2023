@@ -21,7 +21,7 @@ const Mint = (props) => {
         setupSDK();
     
         const results = NftService.mintERC721Token(
-            { contractAddress, recipient, uri },
+            { contractAddress, owner, recipient, uri },
             chainId, pk
           )
           console.log(results)
