@@ -1,35 +1,32 @@
 import React, {useState} from 'react'
 import './Mint.css'
 import { NftService, TransactionService } from '@liquality/wallet-sdk'
-import { MintERC721Request } from '@liquality/wallet-sdk/dist/src/nft/types'
-import {getPrivateKey, setupSDK} from "../utils";
+// import { MintERC721Request } from '@liquality/wallet-sdk/dist/src/nft/types'
+import {setupSDK} from "../utils";
 
-type Props = {
-    onSubmit: (request: MintERC721Request, chainId: number, pk: string) => void;
-    transactionHash: string;
-  };
+const Mint = (props) => {
+    const {transactionHash} = props
 
-const Mint: React.FC<Props> = (props) => {
-    const {onSubmit, transactionHash} = props
-
-    const [chainId, setChainId] = useState("")
+    const [chainId, setChainId] = useState(0)
     const [contractAddress, setContractAddress] = useState("")
     const [recipient, setRecipient] = useState("")
     const [uri, setUri] = useState("")
+    const [owner, setOwner] = useState("")
+    const [pk, setPk] = useState("")
 
     const [nfts, setNfts] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log({contractAddress, recipient, uri})
         setupSDK();
-        const fetchNfts = async (address: string, chainId: string) => {
-            const nfts: any = await NftService.getNfts(address, +chainId);
-            console.log(JSON.stringify(nfts));
-            setNfts(nfts);
-        }
-        
-        onSubmit({contractAddress, recipient, uri}, +chainId, getPrivateKey())
+    
+        const results = NftService.mintERC721Token(
+            { contractAddress, recipient, uri },
+            chainId, pk
+          )
+          console.log(results)
+          setNfts(results)
+          console.log(nfts)
     }
 
     const checkStatus = async () => {
@@ -56,6 +53,10 @@ const Mint: React.FC<Props> = (props) => {
                 <div>
                     <label className='mint_form_label' htmlFor=""> Your ChainID</label>
                     <input className='mint_form_input' value={chainId} onChange={(e) => setChainId(e.target.value)} id="ChainID" type="number" placeholder='Type chainID here...' required />
+                </div>
+                <div>
+                    <label className='mint_form_label' htmlFor="">Owner</label>
+                    <input className='mint_form_input' value={owner} onChange={(e) => setOwner(e.target.value)} id="Owner" type="text" placeholder='Type owner here...' required />
                 </div>
                 <div>
                     <label className='mint_form_label' htmlFor="">Token Address</label>

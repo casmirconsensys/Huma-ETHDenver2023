@@ -1,12 +1,11 @@
 import './App.css';
-import Mint from './components/Mint.tsx';
+import Mint from './components/Mint';
 
 function App() {
   return (
     <div className="App">
       <Mint />
     </div>
-    //TODO: Implement create wallet for auth
   );
 }
 

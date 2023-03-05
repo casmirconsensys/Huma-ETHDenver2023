@@ -4,7 +4,7 @@ export function setupSDK() {
   setup({
     alchemyApiKey: process.env.REACT_APP_PUBLIC_ALCHEMY_API_KEY,
     etherscanApiKey: process.env.REACT_APP_ETHERSCAN_API_KEY,
-    infuraProjectId: "-",
+    infuraProjectId: process.env.REACT_APP_PUBLIC_INFURA_ID,
     pocketNetworkApplicationID: "-",
     quorum: 1,
     slowGasPriceMultiplier: 1,
