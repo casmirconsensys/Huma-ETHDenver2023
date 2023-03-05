@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import './Mint.css'
-import { TransactionService } from '@liquality/wallet-sdk'
+import { NftService, TransactionService } from '@liquality/wallet-sdk'
 import { MintERC721Request } from '@liquality/wallet-sdk/dist/src/nft/types'
-import {getPrivateKey} from "../utils";
+import {getPrivateKey, setupSDK} from "../utils";
 
 type Props = {
     onSubmit: (request: MintERC721Request, chainId: number, pk: string) => void;
@@ -17,9 +17,18 @@ const Mint: React.FC<Props> = (props) => {
     const [recipient, setRecipient] = useState("")
     const [uri, setUri] = useState("")
 
+    const [nfts, setNfts] = useState([]);
+
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log({contractAddress, recipient, uri})
+        setupSDK();
+        const fetchNfts = async (address: string, chainId: string) => {
+            const nfts: any = await NftService.getNfts(address, +chainId);
+            console.log(JSON.stringify(nfts));
+            setNfts(nfts);
+        }
+        
         onSubmit({contractAddress, recipient, uri}, +chainId, getPrivateKey())
     }
 
